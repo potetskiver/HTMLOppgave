@@ -9,9 +9,16 @@ h1{
 }
 
 br {
-            display: block; 
-            content: "";
-            margin-top: 0;
+  display: block; 
+  content: "";
+  margin-top: 0;
+}
+
+.rollNum{
+  font-size: 15px;
+  position: fixed;
+  right: 0.1%;
+  top: 97%;
 }
 
 .previous{
@@ -21,13 +28,19 @@ br {
   color: white;
 }
 
-.k{
+.case{
   position: fixed;
   left: 50%;
   top: 50%;
   width: 360px;
   height: 360px;
   background-image: url('./images/weaponcase1.png');
+}
+
+.resetCookies{
+  position: fixed;
+  left: 1%;
+  top: 90%;
 }
 
 .spinning{
@@ -37,9 +50,9 @@ br {
   width: 360px;
   height: 360px;
   animation-name: spin;
-  animation-iteration-count: 4;
+  animation-iteration-count: 15;
   animation-timing-function: steps(1);
-  animation-duration: 0.75s;
+  animation-duration: 0.55s;
   background-image: url('./images/weaponcase1.png');
 }
 
@@ -78,20 +91,17 @@ br {
   0%{
     background-image: url('./images/gammadoppelerglock.png');
   }
-  15%{
+  20%{
     background-image: url('./images/safarimeshg.png');
   }
-  30%{
+  35%{
     background-image: url('./images/talondoppler.png');
   }
-  45%{
-    background-image: url('./images/kato2014.png');
-  }
-  65%{
+  50%{
     background-image: url('./images/paris2023.png');
   }
-  80%{
-
+  70%{
+    background-image: url('./images/kato2014.png');
   }
 }
 

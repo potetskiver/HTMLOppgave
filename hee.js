@@ -1,23 +1,27 @@
 async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 let canRoll = true;
 rollURL = "";
 rollName = "";
+rollNum = "";
 previousRolls = [];
+
 function r(){
-  if(canRoll === true){
-    const element = document.getElementById("rollDiv");
-    var e = formatRoll();
-    rollURL = e;
-    element.classList.remove("spinning")
-    element.classList.remove("k");
-    void element.offsetWidth;
+  if(canRoll === true){ //sjekk om man kan spinne
+    const element = document.getElementById("rollDiv"); //korte ned litt
+    var e = formatRoll(); //hent rollURL fra roll, med hjelp av formatRoll()
+    rollURL = e; // gi rollURL verdien fra forrige
+    document.getElementById("spintextt").innerHTML = "";
+    element.classList.remove("spinning") //reset spinning animasjon
+    element.classList.remove("case"); //fjern kassebilde.
+    void element.offsetWidth; //force DOM reset
     timeoutt();
-    element.addEventListener("animationend",timeinn);
-    element.classList.add("spinning");
-    element.style.backgroundImage=e;
-    console.log(e);
+    element.addEventListener("animationend",timeinn); //fortell rollDiv at den skal kjøre timeinn() når spinning animasjonen er ferdig.
+    element.classList.add("spinning"); //start spin
+    element.style.backgroundImage=e; //sett bilde til spinnresultat
+    console.log(e); // debug
   } else {
     //console.log("nuhuh");
   }
@@ -25,56 +29,47 @@ function r(){
 
 function prevRolls(rolly){
   previousRolls.push(rolly);
-  $.cookie('prevRolls', JSON.stringify(previousRolls));
+  Cookies.set('prevRolls',JSON.stringify(previousRolls));
   drawPreviousRolls();
 }
 
+function resetCookies(){
+  Cookies.remove('prevRolls');
+}
+
 function drawFromCookies(){
-  previousRolls = JSON.parse($.cookie('prevRolls'));
-  drawPreviousRolls();
+  var prevRolls = JSON.parse(Cookies.get('prevRolls'));
+  if(prevRolls != null){
+    previousRolls = prevRolls;
+    drawPreviousRolls();
+  } else {
+    document.getElementById("prevText").innerHTML = "Spinn for å se tidligere resultater!";
+  }
 }
 
 function drawPreviousRolls(){
   var prev = document.getElementById("previous");
   prev.innerHTML = "";
-  prev.innerHTML += "<p>Tidligere resultat</p>" + "<br>";
+  prev.innerHTML += "<p>Tidligere resultater</p>" + "<br>";
   for(var i = 0; i < previousRolls.length; i++){
-    //drawName(i);
     prev.innerHTML += "<p>" + previousRolls[i] + "</p>"+"<br>";
-  }
-}
-
-function drawName(i){
-  var prev = document.getElementById("previous");
-  if(previousRolls[i] == ''){
-    prev.innerHTML += "<p>" + "Glock-18 | Gamma Doppler" + "</p>"+"<br>";
-  }else if(previousRolls[i] == 'url(./images/talondoppler.png)'){
-    prev.innerHTML += "<p>" + "★ Talon Knife | Doppler" + "</p>"+"<br>";
-  }else if(previousRolls[i] == 'url(./images/talondoppler.png)'){
-    prev.innerHTML += "<p>" + "EMS Katowice 2014 Capsule" + "</p>"+"<br>";
-  }else if(previousRolls[i] == 'url(./images/talondoppler.png)'){
-    prev.innerHTML += "<p>" + "Paris 2023 Legends Sticker Capsule" + "</p>"+"<br>";
-  }else if(previousRolls[i] == 'url(./images/talondoppler.png)'){
-    prev.innerHTML += "<p>" + "★ Shadow Daggers | Safari Mesh" + "</p>"+"<br>";
-  }else{
-    prev.innerHTML += "Nope";
   }
 }
 
 function roll(){
   let rolle = Math.floor(Math.random() * 50000);
-  if(rolle <= 5000){
+  rollNum = rolle;
+  if(rolle <= 3000){
     return "Glock-18 | Gamma Doppler";
-  }else if(rolle > 5000 && rolle <= 7000){
+  }else if(rolle > 3000 && rolle <= 4500){
     return "★ Talon Knife | Doppler";
-  }else if(rolle > 7000 && rolle <= 9000){
+  }else if(rolle > 4500 && rolle <= 5000){
     return "EMS Katowice 2014 Capsule";
-  }else if(rolle > 9000 && rolle <= 35000){
+  }else if(rolle > 5000 && rolle <= 35000){
     return "Paris 2023 Legends Sticker Capsule";
-  }else if(rolle > 35000 && rolle <= 45000){
-    //return "background-image: url('./images/fef.png')";
-    return "EMS Katowice 2014 Capsule";
-  }else if(rolle > 45000 && rolle <= 50000){
+  }else if(rolle > 35000 && rolle <= 47500){
+    return "Paris 2023 Legends Sticker Capsule";
+  }else if(rolle > 47500 && rolle <= 50000){
     return "★ Shadow Daggers | Safari Mesh";
   }
 }
@@ -97,7 +92,7 @@ function formatRoll(){
 
 async function timeoutt(){
   canRoll = false;
-  await sleep(5125);
+  await sleep(10500);
   timeinnn();
 }
 
@@ -105,11 +100,13 @@ function timeinn(){
   //canRoll = true;
   console.log("wait");
   document.getElementById("congratss").innerHTML = "Congrats!";
+  document.getElementById("rollNumText").innerHTML = rollNum;
 }
 
 function timeinnn(){
     document.getElementById("rollDiv").style.backgroundImage = "url('./images/weaponcase1.png')";
     document.getElementById("congratss").innerHTML = "";
+    document.getElementById("spintextt").innerHTML = "SPIN!";
     void document.getElementById("rollDiv").offsetWidth;
     console.log("yea");
     rollYes();
@@ -119,14 +116,4 @@ function timeinnn(){
 async function rollYes(){
   await sleep(500);
   canRoll = true;
-}
-
-function alertr(){
-  //alert("Alert");
-  r();
-}
-
-function getInput(){
-  let input = document.getElementById("inp").value;
-  document.getElementById("inpp").innerHTML = input;
 }
