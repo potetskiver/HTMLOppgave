@@ -1,0 +1,118 @@
+body {
+  background-color: green;
+}
+
+h1{
+  text-align: center;
+  letter-spacing: 3px;
+  left: 50%;
+}
+
+br {
+            display: block; 
+            content: "";
+            margin-top: 0;
+}
+
+.previous{
+  left: 10%;
+  top: 10%;
+  margin: auto;
+  color: white;
+}
+
+.k{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 360px;
+  height: 360px;
+  background-image: url('./images/weaponcase1.png');
+}
+
+.spinning{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 360px;
+  height: 360px;
+  animation-name: spin;
+  animation-iteration-count: 4;
+  animation-timing-function: steps(1);
+  animation-duration: 0.75s;
+  background-image: url('./images/weaponcase1.png');
+}
+
+.congrats{
+  position: fixed;
+  left: 50%;
+  top: 10%;
+  width: 360px;
+  height: 360px;
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button{
+  background-color: red;
+  position: fixed;
+  /*animation-timing-function: steps(1, end);*/
+  animation-name: button;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+}
+
+/*.button:hover{
+  background-color: blue;
+}*/
+
+@keyframes spin {
+  0%{
+    background-image: url('./images/gammadoppelerglock.png');
+  }
+  15%{
+    background-image: url('./images/safarimeshg.png');
+  }
+  30%{
+    background-image: url('./images/talondoppler.png');
+  }
+  45%{
+    background-image: url('./images/kato2014.png');
+  }
+  65%{
+    background-image: url('./images/paris2023.png');
+  }
+  80%{
+
+  }
+}
+
+@keyframes congratsd{
+  33%{
+    color: red;
+  }
+  66%{
+    color: blue;
+  }
+  99%{
+    color: green;
+  }
+  15%{color: red;}
+}
+
+@keyframes button{
+  0%{
+    background-color: red;
+  }
+  50%{
+    background-color: blue;
+  }
+}

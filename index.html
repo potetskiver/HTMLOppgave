@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rafael</title>
+		<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" type="text/css" href="index.css">
+		<script src="hee.js" type="text/javascript"></script>
+		<script src="jquery-3.7.1.min.js" type="text/javascript"></script>
+		<script src="jquery.cookie.js" type="text/javascript"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				drawFromCookies();
+			});
+		</script>
+	</head>
+	<body>
+		<h1 style="color: rgb(128,255,0);">Neisann sveisann</h1>
+		<div id="FullRoll">
+			<div class="congrats centered" style="top:40%;" id="congrats">
+				<p id="congratss" style="animation-name: congratsd; animation-iteration-count:
+				infinite; animation-duration: 0.7s; letter-spacing: 1px; font-size: 50px;"></p>
+			</div>
+			<div id="previous" class="previous">
+				<p></p>
+			</div>
+		  <div id="rollDiv" class="k centered">
+		  </div>
+		</div>
+
+		<button class="button centered" style="font-size: 23px; top: 75%;
+		left: 50%; width: 100px; height: 60px;" onclick="r()">hee</button>
+	</body>
+</html>
