@@ -39,7 +39,7 @@ function resetCookies(){
 
 function drawFromCookies(){
   var prevRolls = JSON.parse(Cookies.get('prevRolls'));
-  if(prevRolls != null){
+  if(Cookies.get('prevRolls') != null){
     previousRolls = prevRolls;
     drawPreviousRolls();
   } else {
